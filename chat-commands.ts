@@ -5,7 +5,7 @@ export default function(io, session) {
 var commands = {
 	"nick": {
 		numArgs: 1,
-		handler: function(args, io, session, player) {
+		handler: function(args: string[], io, session, player) {
 			player.nick = args[0];
 			session.players[player.uuid] = player;
 			io.sockets.emit('nickname', player.nick);
@@ -32,14 +32,14 @@ var isCommand = function(msg) {
 }
 
 /**
- * Runs a given command.
+ * Runs a given command. Ex. \nick MyNickname
  * Parses a command into a name and a series of arg tokens.
  * @param  {Object}
  * @param  {String}
  */
-var run = function(player, msg) {
+var run = function(player, msg: string) {
 	var cmd = msg.substring(1, msg.length);
-	var args = cmd.match(/[A-z][a-z]*/g);
+	var args = cmd.match(/[A-z][A-z]*/g); // Built w/ regexr.com
 	var fun = args.shift();
 
 	commands[fun].handler(args, io, session, player);

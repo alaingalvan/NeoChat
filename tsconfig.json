@@ -8,8 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitHelpers": false,
-    "sourceMap": true,
-    "outDir": "js"
+    "sourceMap": true
   },
   "filesGlob": [
     "./**/*.ts",

@@ -33,19 +33,27 @@ io.on('connection', (socket) => {
   var player;
 
   socket.on('register', (uuid) => {
+    // If the player doesn't exist
     if (!(player = chatSession.players[uuid])) {
+      // Count for all the users
       chatSession.count++;
+
+      // Create a new player
       player = chatSession.players[uuid] = {
         uuid: uuid,
-        tabs: 0,
+        tabs: 0,  // How many channels open
+        // How many connections for that user
         nick: 'guest' + chatSession.count,
         socket: socket
       };
+      // Send a message to the new socket
       socket.emit('message', chatSession.log);
+      // Send a message to everyone.
       io.sockets.emit('nickname', player.nick);
 
     } else {
-      player = chatSession.players[uuid];
+
+      player = chatSession.players[uuid]; // Keeps track of who's who
       socket.emit('message', chatSession.log + '\nWelcome back ' + player.nick + '!');
       if (!player.disconnected) {
         player.tabs++;
@@ -60,8 +68,6 @@ io.on('connection', (socket) => {
 
     chatSession.players[uuid] = player;
   });
-
-
 
   socket.on('disconnect', (type) => {
     // Don't disconnect player in-game
@@ -78,13 +84,15 @@ io.on('connection', (socket) => {
     }, 2000);
   });
 
-
   socket.on('message', function(msg) {
     if (!commands.isCommand(msg)) {
       var out = player.nick + ': ' + msg;
+      //Jennifer: Hi Class this is really easy
+
       io.emit('message', out);
       chatSession.log += out + "\n";
     } else
+      // Pass the current player and message
       commands.run(player, msg);
   });
 
@@ -93,5 +101,5 @@ io.on('connection', (socket) => {
 
 // Start App
 var port = 8082;
-http.listen(port);
+http.listen(port); // Listen to port 8082
 console.log('Chat App Online @ localhost:' + port);
