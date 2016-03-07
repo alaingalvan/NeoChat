@@ -21,3 +21,5 @@ pids
 build/Release
 *.js
 !/public/js/**/*.js
+
+*.ftpconfig
