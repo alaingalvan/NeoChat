@@ -101,5 +101,5 @@ io.on('connection', (socket) => {
 
 // Start App
 var port = 8083;
-http.listen(port); // Listen to port 8082
+http.listen(port); // Listen to port 8083
 console.log('Chat App Online @ localhost:' + port);

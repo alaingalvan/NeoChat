@@ -1,5 +1,5 @@
 var nickname = 'guest';
-var socket = io('http://localhost:8082');
+var socket = io('http://localhost:8083');
 
 $(function() {
   socket.on('connect', function() {
