@@ -44,7 +44,8 @@ io.on('connection', (socket) => {
         tabs: 0,  // How many channels open
         // How many connections for that user
         nick: 'guest' + chatSession.count,
-        socket: socket
+        socket: socket,
+        level: 0
       };
       // Send a message to the new socket
       socket.emit('message', chatSession.log);

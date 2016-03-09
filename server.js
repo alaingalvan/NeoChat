@@ -21,7 +21,8 @@ io.on('connection', function (socket) {
                 uuid: uuid,
                 tabs: 0,
                 nick: 'guest' + chat_session_1.default.count,
-                socket: socket
+                socket: socket,
+                level: 0
             };
             socket.emit('message', chat_session_1.default.log);
             io.sockets.emit('nickname', player.nick);

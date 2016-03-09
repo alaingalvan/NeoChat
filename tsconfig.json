@@ -26,7 +26,6 @@
   "files": [
     "./chat-commands.ts",
     "./chat-session.ts",
-    "./home/wwalters/COP4813/TypeScriptChat/server.ts",
     "./server.ts",
     "./typings/main.d.ts"
   ]

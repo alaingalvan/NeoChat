@@ -4,5 +4,5 @@
 export default {
   players: [],
   count: 0,
-  log: ""
+  log: " "
 };
