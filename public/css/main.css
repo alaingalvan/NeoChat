@@ -19,7 +19,7 @@ form {
 form input {
   border: 0;
   padding: 10px;
-  width: 90%;
+  width: 100%;
   margin-right: .5%;
 }
 
@@ -44,3 +44,308 @@ form button {
 #messages li:nth-child(odd) {
   background: #eee;
 }
+
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    display:inline-block;
+}
+
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+
+    .tab-links li {
+        margin:0px 5px;
+        float:left;
+        list-style:none;
+    }
+
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 0px 0px;
+            background:#7FB5DA;
+            font-size:16px;
+            font-weight:600;
+            color:#4c4c4c;
+            transition:all linear 0.15s;
+        }
+
+        .tab-links a:hover {
+            background:#a7cce5;
+            text-decoration:none;
+        }
+
+    li.active a, li.active a:hover {
+        background:#fff;
+        color:#4c4c4c;
+    }
+
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding:15px;
+        border-radius:3px;
+        box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+        background:#fff;
+    }
+
+        .tab {
+            display:none;
+        }
+
+        .tab.active {
+            display:block;
+        }
+
+
+  @-webkit-keyframes cf4FadeInOut {
+   0% {
+     opacity:1;
+   }
+   17% {
+     opacity:1;
+   }
+   25% {
+     opacity:0;
+   }
+   92% {
+     opacity:0;
+   }
+   100% {
+     opacity:1;
+   }
+  }
+
+  @-moz-keyframes cf4FadeInOut {
+   0% {
+     opacity:1;
+   }
+   17% {
+     opacity:1;
+   }
+   25% {
+     opacity:0;
+   }
+   92% {
+     opacity:0;
+   }
+   100% {
+     opacity:1;
+   }
+  }
+
+  @-o-keyframes cf4FadeInOut {
+   0% {
+     opacity:1;
+   }
+   17% {
+     opacity:1;
+   }
+   25% {
+     opacity:0;
+   }
+   92% {
+     opacity:0;
+   }
+   100% {
+     opacity:1;
+   }
+  }
+
+  @keyframes cf4FadeInOut {
+   0% {
+     opacity:1;
+   }
+   17% {
+     opacity:1;
+   }
+   25% {
+     opacity:0;
+   }
+   92% {
+     opacity:0;
+   }
+   100% {
+     opacity:1;
+   }
+  }
+
+  #cf4a {
+    position:relative;
+    height:281px;
+    width:450px;
+    margin:0 auto;
+  }
+  #cf4a img {
+    position:fixed;
+    left:0;
+  }
+
+  #cf4a img {
+    -webkit-animation-name: cf4FadeInOut;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 8s;
+
+    -moz-animation-name: cf4FadeInOut;
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-duration: 8s;
+
+    -o-animation-name: cf4FadeInOut;
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-iteration-count: infinite;
+    -o-animation-duration: 8s;
+
+    animation-name: cf4FadeInOut;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 8s;
+  }
+  #cf4a img:nth-of-type(1) {
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    animation-delay: 6s;
+  }
+  #cf4a img:nth-of-type(2) {
+    -webkit-animation-delay: 4s;
+    -moz-animation-delay: 4s;
+    -o-animation-delay: 4s;
+    animation-delay: 4s;
+  }
+  #cf4a img:nth-of-type(3) {
+    -webkit-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    -o-animation-delay: 2s;
+    animation-delay: 2s;
+  }
+  #cf4a img:nth-of-type(4) {
+    -webkit-animation-delay: 0;
+    -moz-animation-delay: 0;
+    -o-animation-delay: 0;
+    animation-delay: 0;
+  }
+
+  /*-------- SIGN IN CSS ---------------*/
+  .wrap
+  {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+  }
+
+  h1.form-title
+  {
+      font-family: 'Open Sans' , sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      color: #FFFFFF;
+      margin: 0 auto;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+  }
+
+  .login{
+    position: relative;
+    bottom: 26px;
+    margin: 0 auto;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.66);
+    padding: 10px;
+    top:30%;
+  }
+
+  form
+  {
+      width: 400px;
+      margin: 0 auto;
+  }
+
+  form.login input[type="text"]
+  {
+      width: 100%;
+      margin: 0;
+      padding: 5px 10px;
+      background: 0;
+      border: 0;
+      border-bottom: 1px solid #FFFFFF;
+      outline: 0;
+      font-style: italic;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      color: #FFFFFF;
+      outline: 0;
+  }
+
+  form.login input[type="submit"]
+  {
+      width: 100%;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 16px;
+      outline: 0;
+      cursor: pointer;
+      letter-spacing: 1px;
+  }
+
+  form.login input[type="submit"]:hover
+  {
+      transition: background-color 0.5s ease;
+  }
+
+
+  form.login label, form.login a
+  {
+      font-size: 12px;
+      font-weight: 400;
+      color: #FFFFFF;
+  }
+
+  form.login a
+  {
+      transition: color 0.5s ease;
+  }
+
+  form.login a:hover
+  {
+      color: #2ecc71;
+  }
+
+  .pr-wrap
+  {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: none;
+  }
+
+  .posted-by
+  {
+      position: absolute;
+      bottom: 26px;
+      margin: 0 auto;
+      color: #FFF;
+      background-color: rgba(0, 0, 0, 0.66);
+      padding: 10px;
+      left: 45%;
+  }

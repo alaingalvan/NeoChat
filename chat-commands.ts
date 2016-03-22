@@ -6,9 +6,13 @@ var commands = {
 	"nick": {
 		numArgs: 1,
 		handler: function(args: string[], io, session, player) {
-			player.nick = args[0];
-			session.players[player.uuid] = player;
-			io.sockets.emit('nickname', player.nick);
+				player.nick = args[0];
+				if (args[0] === "null" || args[0] === null || args[0] === "null " || args[0] === "undefined")
+				{
+					player.nick = 'Guest';
+				}
+				session.players[player.uuid] = player;
+				io.sockets.emit('nickname', player.nick);
 		}
 	},
 	"clear": {
