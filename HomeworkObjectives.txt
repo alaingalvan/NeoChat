@@ -1,0 +1,75 @@
+1) You must have a login page -- no password, just nickname
+
+2) If nickname is taken, system will rename it.
+
+3) Once you are logged in, you should have the following windows
+
+3.a) Channels (you will have different tabs) including a system log that gives information about user's connection.
+
+3.b) Input box for messages
+
+3.c) List with users connected
+
+4) You will need to have tabs for the channels
+
+
+
+5) You will have 3 types of users . SysOp (*) , Moderator (+), User
+
+
+
+   SysOp can demote or promote. Moderator may promote others to moderator but not demote
+
+6) The user may send messages to individual users (and it will appear as a private channel window) or to the channel
+7) A SysOp may send messages to any channel or all channels... those messages (broadcast) should be in a different color and with *** *** in between (as well as italicized).
+8) You have two type of channels.
+#NameOfChannel : Channels created by a SysOp or Moderator.
+##NameOfChannel: Channels created by a user
+8.1) Channels created by SysOp or Moderators are permanent. SysOp may delete channels.
+9) You will have to command for the following actions
+/list (display channel list)
+/list xxx (display channel that contains that string xxx)
+/msg nick "mesage this" (sends private message to user). Once they are in the chat window, the chat windows takes care of the private messages (using the same emit command)
+/nick mynewnick (changes nickname)
+/quit
+/join channel (joins channel and opens new window)
+/leave channel (leaves channel and closes window)
+/createChannel
+/removeChannel
+/promote nick
+/demote nick
+10) Program SysBot. each channel has one and the system has a main sysbot. Users can communicate with SysBot.
+The basic SysBot replies to messages. For example,
+
+/msg SysBot "Hello"
+SysBot says
+Hello Nick5 - We are in Channel X
+
+/msg SysBot Help
+
+list commands
+
+10.1) create a special sysbot called SmartBot that works in any channel
+You can do the following
+
+/msg SmartBot calc  5*5*10+10/2*(1%2)
+
+SmartBot returns value
+
+10.2) Note that the smartbot, sysbot, and sysops are reserved nicks. So you can use it like this
+SmartBot calc 2+2
+
+11) You will need a special page that only an admin can access such as
+chat/admin
+
+with a username and password (ok to hardcode for homework).
+
+In here you will see server messages of users coming in and out and all actions (except messages).
+For example, user created channel
+
+12) Create documentation.
+
+Extra Credit
+
+* User may registered their nickname to keep it permanent. In that case, they will need to add a password and that should be encrypted
+* SmartBot rpn : Implement reverse polish notation. 
