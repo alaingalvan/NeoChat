@@ -8,8 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitHelpers": false,
-    "sourceMap": true,
-    "outDir": "js"
+    "sourceMap": true
   },
   "filesGlob": [
     "./**/*.ts",
@@ -27,6 +26,7 @@
   "files": [
     "./chat-commands.ts",
     "./chat-session.ts",
+    "./public/js/main.ts",
     "./server.ts",
     "./typings/main.d.ts"
   ]

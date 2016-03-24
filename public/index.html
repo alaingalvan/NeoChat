@@ -3,16 +3,42 @@
 
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>NeoChat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
-  <ul id="messages"></ul>
-  <form action="">
-    <input id="m" autocomplete="off" />
-    <button>Send</button>
-  </form>
+
+  <div id="sidebar" class="sidebar">
+    <div class="modal">
+      <form id="registerform">
+        <input placeholder="Username"/>
+        <button>Join Chat</button>
+      </form>
+    </div>
+    <ul id="users">
+      <!--Add Users Here-->
+    </ul>
+  </div>
+  <div class="content">
+    <ul class="tabs">
+      <li class="tab">#anouncements</li>
+      <li class="tab tab-primary">#soccer</li>
+      <li class="tab">#jazz</li>
+    </ul>
+    <div class="chat">
+      <div class="messages">
+
+        <!--Messages go here-->
+
+      </div>
+      <form id="#message-form">
+        <input placeholder="Type your Message Here" autocomplete="off" id="message-input"/>
+        <button>Reply</button>
+      </form>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/js/main.js"></script>

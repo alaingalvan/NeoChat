@@ -1,9 +1,9 @@
 /**
- * Sockets Chat App
- * By Francisco Ortega (http://franciscoraulortega.com/), Alain Galvan (https://Alain.xyz)
- * Visit the page, and you'll be given a unique id and a default username you can rename with /nick <newname>
- * All previous messages in the chat are saved on the server.
- */
+* Sockets Chat App
+* By Francisco Ortega (http://franciscoraulortega.com/), Alain Galvan (https://Alain.xyz)
+* Visit the page, and you'll be given a unique id and a default username you can rename with /nick <newname>
+* All previous messages in the chat are saved on the server.
+*/
 
 import * as Express from 'express';
 import * as Http from 'http';
@@ -16,6 +16,7 @@ var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
 
+//Bind Chat Commands Map to Socket Session
 var commands = Commands(io, chatSession);
 
 // Routes
@@ -32,21 +33,31 @@ io.on('connection', (socket) => {
 
   var player;
 
-  socket.on('register', (uuid) => {
-    if (!(player = chatSession.players[uuid])) {
+  socket.on('sync-store', () => {
+    socket.emit('sync-store', JSON.stringify(chatSession));
+  })
+
+  socket.on('register', (uuid: string) => {
+    socket.emit('sync-store', JSON.stringify(chatSession));
+    // If there doesn't already exist a player in the chat session store
+    if (!(player = chatSession.users[uuid])) {
+
+      // Create a new player and add them to the chat.
       chatSession.count++;
-      player = chatSession.players[uuid] = {
+      player = chatSession.users[uuid] = {
         uuid: uuid,
         tabs: 0,
         nick: 'guest' + chatSession.count,
-        socket: socket
+        socket: socket,
+        type: 'user'
       };
-      socket.emit('message', chatSession.log);
+
       io.sockets.emit('nickname', player.nick);
 
     } else {
-      player = chatSession.players[uuid];
-      socket.emit('message', chatSession.log + '\nWelcome back ' + player.nick + '!');
+      player = chatSession.users[uuid];
+      socket.emit('log', chatSession.channels['#anouncements'].messages);
+      socket.emit('message', 'System: Welcome back ' + player.nick + '!', '#anouncements');
       if (!player.disconnected) {
         player.tabs++;
         socket.disconnect();
@@ -58,7 +69,7 @@ io.on('connection', (socket) => {
       player.disconnected = false;
     }
 
-    chatSession.players[uuid] = player;
+    chatSession.users[uuid] = player;
   });
 
 
@@ -72,18 +83,24 @@ io.on('connection', (socket) => {
 
     player.timeout = setTimeout(function() {
       if (player.disconnected) {
-        delete chatSession.players[player.uuid];
+        delete chatSession.users[player.uuid];
         chatSession.count--;
       }
     }, 2000);
   });
 
 
-  socket.on('message', function(msg) {
+  socket.on('message', (msg: string, channel:string) => {
     if (!commands.isCommand(msg)) {
       var out = player.nick + ': ' + msg;
-      io.emit('message', out);
-      chatSession.log += out + "\n";
+      io.emit('message', out, channel);
+
+      // Add message to chatSession
+      var curChannel = chatSession.channels[channel];
+      if (curChannel)
+        curChannel.messages.push(out);
+
+      console.log(chatSession.channels[channel])
     } else
       commands.run(player, msg);
   });

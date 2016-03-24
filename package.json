@@ -1,5 +1,5 @@
 {
-  "name": "chat",
+  "name": "neochat",
   "version": "0.0.1",
   "description": "chat socket.io app",
   "dependencies": {
@@ -9,7 +9,26 @@
     "socket.io-client": "^1.4.5"
   },
   "devDependencies": {
-    "ts-node": "^0.5.5",
     "typings": "^0.6.8"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alaingalvan/NeoChat.git"
+  },
+  "keywords": [
+    "neochat",
+    "chat",
+    "im",
+    "socket"
+  ],
+  "author": "Alain Galvan, Francisco Ortega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alaingalvan/NeoChat/issues"
+  },
+  "homepage": "https://github.com/alaingalvan/NeoChat#readme"
 }

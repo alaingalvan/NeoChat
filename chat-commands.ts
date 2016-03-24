@@ -2,7 +2,7 @@
  * This file defines console command logic.
  */
 export default function(io, session) {
-var commands = {
+var commands:IChatCommandMap = {
 	"nick": {
 		numArgs: 1,
 		handler: function(args, io, session, player) {
@@ -37,7 +37,7 @@ var isCommand = function(msg) {
  * @param  {Object}
  * @param  {String}
  */
-var run = function(player, msg) {
+var run = function(player:any, msg:string) {
 	var cmd = msg.substring(1, msg.length);
 	var args = cmd.match(/[A-z][a-z]*/g);
 	var fun = args.shift();
@@ -50,3 +50,11 @@ var run = function(player, msg) {
 		isCommand: isCommand
 	}
 };
+
+interface IChatCommand {
+	numArgs: number,
+	handler: (args?:any, io?:any, session?:any, player?:any) => any
+}
+interface IChatCommandMap {
+	[command:string]:IChatCommand
+}
