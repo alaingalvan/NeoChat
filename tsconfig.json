@@ -27,6 +27,7 @@
     "./chat-commands.ts",
     "./chat-session.ts",
     "./public/js/main.ts",
-    "./server.ts"
+    "./server.ts",
+    "./typings/main.d.ts"
   ]
 }
