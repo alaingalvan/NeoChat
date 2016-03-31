@@ -49,7 +49,9 @@ io.on('connection', (socket) => {
         tabs: 0,
         nick: 'guest' + chatSession.count,
         socket: socket,
-        type: 'user'
+        type: 'user',
+        currentChat: '#anouncements',
+        quit: false
       };
 
       io.sockets.emit('nickname', player.nick);
@@ -91,7 +93,8 @@ io.on('connection', (socket) => {
 
 
   socket.on('message', (msg: string, channel:string) => {
-    if (!commands.isCommand(msg)) {
+
+    if (!commands.isCommand(msg) && !player.quit) {
       var out = player.nick + ': ' + msg;
       io.emit('message', out, channel);
 
@@ -101,8 +104,20 @@ io.on('connection', (socket) => {
         curChannel.messages.push(out);
 
       console.log(chatSession.channels[channel])
-    } else
+    } else if(commands.isCommand(msg)){
       commands.run(player, msg);
+    }
+    else{
+      return
+    }
+  });
+
+  socket.on('channelChange', (channel: string) => {
+
+    player.currentChat = channel
+    // io.emit('message', 'cc' + player.currentChat, channel);
+    console.log(player.currentChat)
+
   });
 
 });

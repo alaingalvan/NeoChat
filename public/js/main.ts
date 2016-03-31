@@ -33,7 +33,9 @@ $(() => {
       localStorage.setItem('uuid', randomid);
       uuid = randomid;
     }
+
     socket.emit('register', uuid);
+    socket.emit('channelChange', $('.tab-primary').html());
   });
 });
 
@@ -76,6 +78,7 @@ $('.tab').click(function() {
     $('.messages').html("");
 
     var channel = store.channels[$(this).html()];
+    socket.emit('channelChange', $('.tab-primary').html());
 
     if(channel) {
       channel.messages.map((m) => {

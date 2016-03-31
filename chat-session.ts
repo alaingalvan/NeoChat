@@ -33,7 +33,9 @@ interface IUser {
   tab: string,
   nick: string,
   socket: any,
-  type: string
+  type: string,
+  currentChat: string,
+  quit: boolean
 };
 
 interface IChatSession {

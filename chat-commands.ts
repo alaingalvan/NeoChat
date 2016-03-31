@@ -21,7 +21,45 @@ var commands:IChatCommandMap = {
 	"help": {
 		numArgs: 0,
 		handler: function(args, io, session, player) {
-			player.socket.emit('message', '/nick <nickname> - change your username\n /clear - clear your chat log.');
+			player.socket.emit('message', '/nick <nickname> - change your username\n /clear - clear your chat log.', player.currentChat);
+		}
+	},
+	"list": {
+		numArgs: 1,
+		handler: function(args, io, session, player) {
+			var channelList = [];
+
+			if (args[0] != null)
+			{
+				var allChannels = Object.getOwnPropertyNames(session.channels);
+				for (var i = 0; i < allChannels.length; i++)
+				 {
+					 if (allChannels[i].indexOf(args[0]) > -1)
+					 {
+						 channelList.push(allChannels[i]);
+					 }
+				 }
+			}
+			else
+			{
+				channelList = Object.getOwnPropertyNames(session.channels);
+			}
+			player.socket.emit('message', 'Channel List: '+ channelList, player.currentChat);
+		}
+	},
+	"quit": {
+		numArgs: 0,
+		handler: function(args, io, session, player) {
+			io.sockets.emit('message', player.nick + ' has quit...', player.currentChat);
+			player.quit = true;
+		}
+	},
+	"join": {
+		numArgs: 0,
+		handler: function(args, io, session, player) {
+			player.quit = false;
+			io.sockets.emit('message', player.nick + ' has joined!!!', player.currentChat);
+
 		}
 	}
 }
