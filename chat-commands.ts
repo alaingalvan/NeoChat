@@ -1,6 +1,9 @@
 /**
  * This file defines console command logic.
  */
+
+
+import {IUser} from './chat-session';
 export default function(io, session) {
 var commands:IChatCommandMap = {
 	"nick": {
@@ -14,7 +17,6 @@ var commands:IChatCommandMap = {
 	"clear": {
 		numArgs: 0,
 		handler: function(args, io, session, player) {
-			session.log = "";
 			player.socket.emit('clear');
 		}
 	},
@@ -61,7 +63,46 @@ var commands:IChatCommandMap = {
 			io.sockets.emit('message', player.nick + ' has joined!!!', player.currentChat);
 
 		}
-	}
+	},
+	"promote": {
+			numArgs: 1,
+			handler: function(args, io, session, player) {
+				var promoplayer = args.join().replace(',','')
+				var playerFound = '';
+				// if (player.type === 'mod')
+				// {
+					var puser : string//: IUser;
+					// let xuser : IUser;
+					let iterable = session.users
+// console.log(session.users);
+					// for (puser in session.users)
+					// {
+					// 	console.log(session.users[puser])
+					// 	// playerFound = puser.nick
+					// }
+
+					for (let [key, value] of iterable)
+					{
+						console.log(value)
+						// playerFound = puser.nick
+					}
+				// for (var i = 1; i < Object.getOwnPropertyNames(session.users).length - 1; i++)
+				// {
+				// 	console.log( Object.getOwnPropertyNames(session.users)[i])
+				// 	if (promoplayer == session.users[Object.getOwnPropertyNames(session.users)[i]].nick)
+				// 	{
+				// 		playerFound = promoplayer;
+				//
+				// 	}
+				// 	else
+				// 	{
+				// 		playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
+				// 	}
+				// }
+					io.sockets.emit('message', playerFound, player.currentChat);
+				// }
+			}
+		}
 }
 
 
@@ -77,7 +118,7 @@ var isCommand = function(msg) {
  */
 var run = function(player:any, msg:string) {
 	var cmd = msg.substring(1, msg.length);
-	var args = cmd.match(/[A-z][a-z]*/g);
+	var args = cmd.match(/[0-9A-z][a-z]*/g);
 	var fun = args.shift();
 
 	commands[fun].handler(args, io, session, player);

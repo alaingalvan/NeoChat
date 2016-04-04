@@ -50,11 +50,16 @@ io.on('connection', (socket) => {
         nick: 'guest' + chatSession.count,
         socket: socket,
         type: 'user',
-        currentChat: '#anouncements',
+        currentChat: '#soccer',
         quit: false
       };
 
       io.sockets.emit('nickname', player.nick);
+
+      if (player.nick == 'guest1')
+      {
+        player.type = 'sysop'
+      }
 
     } else {
       player = chatSession.users[uuid];
@@ -115,8 +120,7 @@ io.on('connection', (socket) => {
   socket.on('channelChange', (channel: string) => {
 
     player.currentChat = channel
-    // io.emit('message', 'cc' + player.currentChat, channel);
-    console.log(player.currentChat)
+    console.log(player.nick + ' moved to channe: '+player.currentChat)
 
   });
 

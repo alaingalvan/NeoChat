@@ -2,6 +2,8 @@
  * Chat Session Data is stored here.
  */
 
+
+
 var store: IChatSession = {
   users: new Array(),
   count: 0,
@@ -27,7 +29,7 @@ export default store;
  * Interfaces
  */
 
-interface IUser {
+export interface IUser {
   uuid: string,
   tabs: number,
   tab: string,
