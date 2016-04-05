@@ -75,8 +75,6 @@ var commands:IChatCommandMap = {
 				if (player.type == 'mod' || player.type == 'sysop')
 				{
 					var puser : string
-
-
 					for (puser in session.users)
 					{
 						if (promoplayer == session.users[puser].nick && promoplayer != player.nick)
@@ -89,7 +87,7 @@ var commands:IChatCommandMap = {
 						}
 						else
 						{
-							playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
+							playerFound = 'You have failed looking for ' + promoplayer
 						}
 					}
 
@@ -106,7 +104,48 @@ var commands:IChatCommandMap = {
 					player.socket.emit('message', playerFound , player.currentChat);
 				}
 			}
-		}
+		},
+		"demote": {
+				numArgs: 1,
+				handler: function(args, io, session, player) {
+					var promoplayer = args.join().replace(',','')
+					var playerFound = '';
+					var promoUser : IUser;
+					var found : boolean = false;
+
+					if (player.type == 'sysop')
+					{
+						var puser : string
+						for (puser in session.users)
+						{
+							if (promoplayer == session.users[puser].nick && promoplayer != player.nick && session.users[puser].type != 'sysop')
+							{
+								playerFound = session.users[puser].nick + ' has been turned into a user by ' + player.nick;
+								promoUser = session.users[puser] ;
+								session.users[puser].type = 'user';
+								found = true;
+								break;
+							}
+							else
+							{
+								playerFound = 'You have failed looking for ' + promoplayer + ' or they are a System Operator'
+							}
+						}
+
+						if (found)
+						{
+							io.sockets.emit('message', playerFound , player.currentChat);
+						}
+						else{
+							player.socket.emit('message', playerFound , player.currentChat);
+						}
+					}
+					else{
+						playerFound = 'Only sysop can demote';
+						player.socket.emit('message', playerFound , player.currentChat);
+					}
+				}
+			}
 }
 
 
