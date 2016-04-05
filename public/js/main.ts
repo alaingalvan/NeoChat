@@ -1,5 +1,5 @@
 var nickname = 'guest',
-  socket = io('http://10.109.60.193:8082'),
+  socket = io('http://localhost:8082'),
   uuid = localStorage.getItem('uuid'),
   store = {
     users: new Array(),
