@@ -20,6 +20,10 @@ var store: IChatSession = {
       type: 'user',
       messages: new Array()
     },
+    '#admin': {
+      type: 'sysop',
+      messages: new Array()
+    },
   }
 };
 

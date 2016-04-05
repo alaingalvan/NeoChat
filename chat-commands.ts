@@ -145,7 +145,54 @@ var commands:IChatCommandMap = {
 						player.socket.emit('message', playerFound , player.currentChat);
 					}
 				}
+			},
+			"msg": {
+				numArgs: 2,
+				handler: function(args, io, session, player) {
+
+					if (!isNaN(args[1]))
+					{
+						args[0] += args[1];
+						args[1] = args[2];
+					}
+					var playerName : string = args[0];
+					var privateMessage : string = '';
+					var msgToPlayer : IUser;
+					var puser : string
+					var msgString : string
+					for (msgString in args)
+					{
+						if (msgString != '0')
+						{
+							privateMessage += ' '+ args[msgString]
+						}
+					}
+
+
+
+					if (args[0].toLowerCase() == 'all' && player.type == 'sysop')
+					{
+						for (puser in session.users)
+						{
+								session.users[puser].socket.emit('message','*** System Operator '+player.nick + ': ' + privateMessage + ' ***', session.users[puser].currentChat)
+							}
+					}
+
+
+
+					for (puser in session.users)
+					{
+						if(playerName == session.users[puser].nick)
+						{
+							msgToPlayer = session.users[puser]
+							player.socket.emit('message','(msg) '+player.nick + ' -> ' + msgToPlayer.nick+ ': ' + privateMessage, player.currentChat)
+							msgToPlayer.socket.emit('message','(msg) from: '+player.nick +': ' + privateMessage, msgToPlayer.currentChat)
+							break;
+						}
+					}
+				}
 			}
+
 }
 
 
@@ -184,7 +231,7 @@ interface IChatCommandMap {
 
 /* Old broken code
 
-
+//Loop through objects
 for (var i = 1; i < Object.getOwnPropertyNames(session.users).length - 1; i++)
 {
 	console.log( Object.getOwnPropertyNames(session.users)[i])
@@ -198,4 +245,31 @@ for (var i = 1; i < Object.getOwnPropertyNames(session.users).length - 1; i++)
 		playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
 	}
 }
+
+
+//combine first 2 element
+		console.log(args.join().replace(',',''))
+
+
+
+		console.log(privateMessage);
+		console.log(args.length);
+		console.log(args);
+
+		// for(var i = 1; i > args.length - 1; i++)
+		// {
+		// 	privateMessage += args[i]
+		// }
+
+
+		// var msgString : string
+		// for (msgString in args)
+		// {
+		// 	if (msgString != '0')
+		// 	{
+		// 		privateMessage += ' '+ args[msgString]
+		// 	}
+		// }
+
+
 */
