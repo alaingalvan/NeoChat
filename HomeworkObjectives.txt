@@ -36,7 +36,7 @@ Complete Warren /quit
 /leave channel (leaves channel and closes window)
 /createChannel
 /removeChannel
-/promote nick
+Complete Warren /promote nick
 /demote nick
 10) Program SysBot. each channel has one and the system has a main sysbot. Users can communicate with SysBot.
 The basic SysBot replies to messages. For example,

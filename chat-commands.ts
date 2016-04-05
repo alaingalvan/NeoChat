@@ -69,38 +69,42 @@ var commands:IChatCommandMap = {
 			handler: function(args, io, session, player) {
 				var promoplayer = args.join().replace(',','')
 				var playerFound = '';
-				// if (player.type === 'mod')
-				// {
-					var puser : string//: IUser;
-					// let xuser : IUser;
-					let iterable = session.users
-// console.log(session.users);
-					// for (puser in session.users)
-					// {
-					// 	console.log(session.users[puser])
-					// 	// playerFound = puser.nick
-					// }
+				var promoUser : IUser;
+				var found : boolean = false;
 
-					for (let [key, value] of iterable)
+				if (player.type == 'mod' || player.type == 'sysop')
+				{
+					var puser : string
+
+
+					for (puser in session.users)
 					{
-						console.log(value)
-						// playerFound = puser.nick
+						if (promoplayer == session.users[puser].nick && promoplayer != player.nick)
+						{
+							playerFound = session.users[puser].nick + ' has been turned into a mod by ' + player.nick;
+							promoUser = session.users[puser] ;
+							session.users[puser].type = 'mod';
+							found = true;
+							break;
+						}
+						else
+						{
+							playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
+						}
 					}
-				// for (var i = 1; i < Object.getOwnPropertyNames(session.users).length - 1; i++)
-				// {
-				// 	console.log( Object.getOwnPropertyNames(session.users)[i])
-				// 	if (promoplayer == session.users[Object.getOwnPropertyNames(session.users)[i]].nick)
-				// 	{
-				// 		playerFound = promoplayer;
-				//
-				// 	}
-				// 	else
-				// 	{
-				// 		playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
-				// 	}
-				// }
-					io.sockets.emit('message', playerFound, player.currentChat);
-				// }
+
+					if (found)
+					{
+						io.sockets.emit('message', playerFound , player.currentChat);
+					}
+					else{
+						player.socket.emit('message', playerFound , player.currentChat);
+					}
+				}
+				else{
+					playerFound = 'Only mods or sysop can promote';
+					player.socket.emit('message', playerFound , player.currentChat);
+				}
 			}
 		}
 }
@@ -137,3 +141,22 @@ interface IChatCommand {
 interface IChatCommandMap {
 	[command:string]:IChatCommand
 }
+
+
+/* Old broken code
+
+
+for (var i = 1; i < Object.getOwnPropertyNames(session.users).length - 1; i++)
+{
+	console.log( Object.getOwnPropertyNames(session.users)[i])
+	if (promoplayer == session.users[Object.getOwnPropertyNames(session.users)[i]].nick)
+	{
+		playerFound = promoplayer;
+
+	}
+	else
+	{
+		playerFound = 'you have failed looking for ' + promoplayer + '------' + args.join().replace(',','')
+	}
+}
+*/
