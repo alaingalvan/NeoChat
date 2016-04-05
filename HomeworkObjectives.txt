@@ -34,8 +34,8 @@ Complete Warren /nick mynewnick (changes nickname)
 Complete Warren /quit
 Complete Warren /join channel (joins channel and opens new window)
 Complete Warren /leave channel (leaves channel and closes window)
-/createChannel
-/removeChannel
+Complete Warren /createChannel
+Complete Warren /removeChannel
 Complete Warren /promote nick
 Complete Warren /demote nick
 

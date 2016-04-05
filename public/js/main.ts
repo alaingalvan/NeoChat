@@ -1,5 +1,5 @@
 var nickname = 'guest',
-  socket = io('http://localhost:8082'),
+  socket = io('http://10.109.60.193:8082'),
   uuid = localStorage.getItem('uuid'),
   store = {
     users: new Array(),
@@ -18,11 +18,17 @@ var appendMessage = (msg: string, channel: string) => {
       </div>
     </div>`);
   }
-
   // Sync our local store with the message.
   if (store.channels[channel])
     store.channels[channel].messages.push(msg);
 };
+
+var appendTabs = (msg: string) => {
+
+    $('.tabs').append(`
+        <li class="tab">${msg}</li>
+    `);
+  }
 
 // Initialize
 // @TODO - Change so register only happens when you finish the pick username form.
@@ -64,6 +70,14 @@ socket.on('nickname', (msg) => {
 socket.on('clear', () => {
   $('.messages').html("");
 });
+
+// socket.on('create',  (msg) => {
+//   $('.tabs').append(`
+//       <li class="tab">${msg}</li>
+//   `);
+// });
+
+socket.on('create', appendTabs);
 
 socket.on('delete-tab', (t) => {
   // @TODO - Add logic for deleting tabs, use store.channels!

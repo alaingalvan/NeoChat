@@ -1,5 +1,10 @@
 # NeoChat
 
+Warren Walters
+Nick Barrionuevo 
+
+
+
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://mit-license.org)
 
 A chat app built with TypeScript, [Sockets.io](http://socket.io/), [Express](expressjs.com), and [jQuery](https://jquery.com/). Theme prototyped with [Codepen](http://codepen.io/alaingalvan/pen/PNWqQv).

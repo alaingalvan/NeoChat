@@ -213,17 +213,40 @@ var commands:IChatCommandMap = {
 					player.socket.emit('message', 'You have moved to announcements', player.currentChat);
 				}
 			},
-			"createChannel": {
+			"create": {
 				numArgs: 1,
 				handler: function(args, io, session, player) {
 
-					// session.channel[args[0]] = {
-					// 	type ='dfg';
-					// }
-					session.channel[args[0]]
-					console.log(args)
+
+					if (player.type == 'user')
+					{
+						session.channels['##'+args[0]] = {
+							type : player.type,
+							messages: new Array()
+						}
+						player.socket.emit('create', '##'+args[0])
+					}
+					else{
+						session.channels['#'+args[0]] = {
+							type : player.type,
+							messages: new Array()
+						}
+						io.sockets.emit('create', '#'+args[0])
+					}
+
+				}
+			},
+			"delete": {
+				numArgs: 1,
+				handler: function(args, io, session, player) {
+
+					if (player.type == 'sysop')
+					{
+						delete session.channels['##'+args[0]]
+					}
 				}
 			}
+
 
 }
 
