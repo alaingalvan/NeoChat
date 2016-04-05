@@ -4,6 +4,7 @@
 
 
 import {IUser} from './chat-session';
+import {IChannel} from './chat-session';
 export default function(io, session) {
 var commands:IChatCommandMap = {
 	"nick": {
@@ -210,7 +211,17 @@ var commands:IChatCommandMap = {
 				handler: function(args, io, session, player) {
 					player.chatSession = '#anouncements'
 					player.socket.emit('message', 'You have moved to announcements', player.currentChat);
+				}
+			},
+			"createChannel": {
+				numArgs: 1,
+				handler: function(args, io, session, player) {
 
+					// session.channel[args[0]] = {
+					// 	type ='dfg';
+					// }
+					session.channel[args[0]]
+					console.log(args)
 				}
 			}
 

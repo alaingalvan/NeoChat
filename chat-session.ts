@@ -9,15 +9,15 @@ var store: IChatSession = {
   count: 0,
   channels: {
     '#anouncements': {
-      type: 'user',
+      type: 'mod',
       messages: new Array()
     },
     '#soccer': {
-      type: 'user',
+      type: 'mod',
       messages: new Array()
     },
     '#jazz': {
-      type: 'user',
+      type: 'mod',
       messages: new Array()
     },
     '#admin': {
@@ -50,7 +50,7 @@ interface IChatSession {
   channels: { [channel: string]: IChannel }
 }
 
-interface IChannel {
+export interface IChannel {
   type: string,
   messages: string[];
 }
