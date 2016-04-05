@@ -18,7 +18,7 @@ Complete Warren 5) You will have 3 types of users . SysOp (*) , Moderator (+), U
 
 
 
-   SysOp can demote or promote. Moderator may promote others to moderator but not demote
+  Complete Warren  SysOp can demote or promote. Moderator may promote others to moderator but not demote
 
 Complete Warren 6) The user may send messages to individual users (and it will appear as a private channel window) or to the channel
 Complete Warren 7) A SysOp may send messages to any channel or all channels... those messages (broadcast) should be in a different color and with *** *** in between (as well as italicized).
@@ -30,7 +30,7 @@ Complete Warren 7) A SysOp may send messages to any channel or all channels... t
 Complete Warren /list (display channel list)
 Complete Warren /list xxx (display channel that contains that string xxx)
 Complete Warren /msg nick "message this" (sends private message to user). Once they are in the chat window, the chat windows takes care of the private messages (using the same emit command)
-/nick mynewnick (changes nickname)
+Complete Warren /nick mynewnick (changes nickname)
 Complete Warren /quit
 /join channel (joins channel and opens new window)
 /leave channel (leaves channel and closes window)

@@ -10,8 +10,7 @@ var commands:IChatCommandMap = {
 		numArgs: 1,
 		handler: function(args, io, session, player) {
 			player.nick = args[0];
-			session.players[player.uuid] = player;
-			io.sockets.emit('nickname', player.nick);
+			io.sockets.emit('nickname', player.nick, player.currentChat);
 		}
 	},
 	"clear": {
@@ -57,9 +56,23 @@ var commands:IChatCommandMap = {
 		}
 	},
 	"join": {
-		numArgs: 0,
+		numArgs: 1,
 		handler: function(args, io, session, player) {
 			player.quit = false;
+			if (args[0] != '')
+			{
+				//anyone will be able to join mod channel unless I put a block on mod via player type
+				var allChans : string;
+				for ( allChans in session.channels)
+				{
+					if(allChans.substring(1, allChans.length) == args[0])
+					{
+						player.currentChat = allChans.substring(1, allChans.length);
+						break;
+					}
+				}
+
+			}
 			io.sockets.emit('message', player.nick + ' has joined!!!', player.currentChat);
 
 		}
@@ -190,6 +203,14 @@ var commands:IChatCommandMap = {
 							break;
 						}
 					}
+				}
+			},
+			"leave": {
+				numArgs: 0,
+				handler: function(args, io, session, player) {
+					player.chatSession = '#anouncements'
+					player.socket.emit('message', 'You have moved to announcements', player.currentChat);
+
 				}
 			}
 
