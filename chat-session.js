@@ -3,7 +3,7 @@ var store = {
     users: new Array(),
     count: 0,
     channels: {
-        '#announcements': {
+        '#anouncements': {
             type: 'mod',
             messages: new Array()
         },

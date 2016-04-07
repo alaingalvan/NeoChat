@@ -79,7 +79,15 @@ socket.on('join',  (t) =>{
   $('.tab').removeClass('tab-primary');
 console.log(t)
 $(`li:contains(${t})`).addClass('tab-primary')
+});
 
+socket.on('addUser',  (u) =>{
+ $('.users').append(`<li class="user">${u}</li>`);
+});
+
+
+socket.on('removeUser',  (u) =>{
+ $(`li:contains(${u})`).remove()
 });
 
 //check for if already admin tab is created

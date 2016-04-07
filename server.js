@@ -49,6 +49,7 @@ io.on('connection', function (socket) {
             player.disconnected = false;
         }
         chat_session_1.default.users[uuid] = player;
+        io.sockets.emit('addUser', player.nick);
     });
     socket.on('disconnect', function (type) {
         if (type == 'booted' && player.tabs > 0)
@@ -60,6 +61,7 @@ io.on('connection', function (socket) {
                 chat_session_1.default.count--;
             }
         }, 2000);
+        io.sockets.emit('removeUser', player.nick);
     });
     socket.on('message', function (msg, channel) {
         if (!commands.isCommand(msg) && !player.quit) {

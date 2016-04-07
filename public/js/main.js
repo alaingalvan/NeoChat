@@ -43,6 +43,12 @@ socket.on('join', function (t) {
     console.log(t);
     $("li:contains(" + t + ")").addClass('tab-primary');
 });
+socket.on('addUser', function (u) {
+    $('.users').append("<li class=\"user\">" + u + "</li>");
+});
+socket.on('removeUser', function (u) {
+    $("li:contains(" + u + ")").remove();
+});
 socket.on('admin', function () {
     $('.tabs').append("\n      <li class=\"tab\">#admin</li>\n  ");
 });

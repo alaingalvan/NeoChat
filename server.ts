@@ -57,6 +57,7 @@ io.on('connection', (socket) => {
       io.sockets.emit('nickname', player.nick);
 
 
+
       if (player.nick == 'guest1')
       {
         player.type = 'sysop'
@@ -79,6 +80,7 @@ io.on('connection', (socket) => {
     }
 
     chatSession.users[uuid] = player;
+    io.sockets.emit('addUser', player.nick);
   });
 
 
@@ -96,6 +98,8 @@ io.on('connection', (socket) => {
         chatSession.count--;
       }
     }, 2000);
+
+  io.sockets.emit('removeUser', player.nick);
   });
 
 
