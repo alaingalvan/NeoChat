@@ -3,43 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>NeoChat</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <title></title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
 <body>
 
-  <div id="sidebar" class="sidebar">
-    <div class="modal">
-      <ul id="users" class='users'>
-        <!--Add Users Here-->
-      </ul>
 
-    </div>
+  <div id="cf4a">
+    <img src="images/1.jpg" />
+    <img src="images/2.jpg" />
+    <img src="images/3.jpg" />
+    <img src="images/4.jpg" />
+        <div class="wrap">
 
-  </div>
-  <div class="content">
-    <ul id ="allTabs" class="tabs">
-      <li class="tab">#announcements</li>
-      <li class="tab tab-primary">#soccer</li>
-      <li class="tab">#jazz</li>
-    </ul>
-    <div class="chat">
-      <div class="messages">
-
-        <!--Messages go here-->
-
-      </div>
-      <form id="#message-form">
-        <input placeholder="Type your Message Here" autocomplete="off" id="message-input"/>
-        <button>Reply</button>
-      </form>
+            <form class="login" action="chat.html" method="get">
+              <h1 class="form-title">Sign In</h1>
+              <input type="text" placeholder="Username" name="username" />
+              <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+            </form>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
+
+
+
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/js/main.js"></script>
 </body>
-
 </html>

@@ -7,11 +7,13 @@ var chat_commands_1 = require('./chat-commands');
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
+var usersName = 'guest7757';
 var commands = chat_commands_1.default(io, chat_session_1.default);
 app.use(Express.static(__dirname + '/public'));
 app.get('/chatapp', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+console.log(usersName);
 io.on('connection', function (socket) {
     var player;
     socket.on('sync-store', function () {
@@ -24,7 +26,7 @@ io.on('connection', function (socket) {
             player = chat_session_1.default.users[uuid] = {
                 uuid: uuid,
                 tabs: 0,
-                nick: 'guest' + chat_session_1.default.count,
+                nick: usersName + chat_session_1.default.count,
                 socket: socket,
                 type: 'user',
                 currentChat: '#soccer',

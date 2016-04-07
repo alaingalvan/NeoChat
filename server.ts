@@ -15,7 +15,7 @@ import Commands from './chat-commands';
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
-
+var usersName = 'guest7757'
 //Bind Chat Commands Map to Socket Session
 var commands = Commands(io, chatSession);
 
@@ -25,8 +25,18 @@ var commands = Commands(io, chatSession);
 app.use(Express.static(__dirname + '/public'));
 app.get('/chatapp', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
+
+
 });
 
+// app.get('/chat.html', (req,res)=>{
+//
+//   var uName = (req.param('username'));
+//   res.send(200,uName);
+//   console.log(uName)
+// });
+
+console.log(usersName)
 
 // Sockets
 io.on('connection', (socket) => {
@@ -47,7 +57,7 @@ io.on('connection', (socket) => {
       player = chatSession.users[uuid] = {
         uuid: uuid,
         tabs: 0,
-        nick: 'guest' + chatSession.count,
+        nick: usersName + chatSession.count,
         socket: socket,
         type: 'user',
         currentChat: '#soccer',
