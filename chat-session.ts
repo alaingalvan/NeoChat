@@ -8,7 +8,7 @@ var store: IChatSession = {
   users: new Array(),
   count: 0,
   channels: {
-    '#anouncements': {
+    '#announcements': {
       type: 'mod',
       messages: new Array()
     },
