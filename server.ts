@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
     socket.emit('sync-store', JSON.stringify(chatSession));
   })
 
-  socket.on('register', (uuid: string) => {
+  socket.on('register', (uuid: string, uName:string) => {
     socket.emit('sync-store', JSON.stringify(chatSession));
     // If there doesn't already exist a player in the chat session store
     if (!(player = chatSession.users[uuid])) {
@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
       player = chatSession.users[uuid] = {
         uuid: uuid,
         tabs: 0,
-        nick: usersName + chatSession.count,
+        nick: uName,
         socket: socket,
         type: 'user',
         currentChat: '#soccer',

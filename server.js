@@ -19,14 +19,14 @@ io.on('connection', function (socket) {
     socket.on('sync-store', function () {
         socket.emit('sync-store', JSON.stringify(chat_session_1.default));
     });
-    socket.on('register', function (uuid) {
+    socket.on('register', function (uuid, uName) {
         socket.emit('sync-store', JSON.stringify(chat_session_1.default));
         if (!(player = chat_session_1.default.users[uuid])) {
             chat_session_1.default.count++;
             player = chat_session_1.default.users[uuid] = {
                 uuid: uuid,
                 tabs: 0,
-                nick: usersName + chat_session_1.default.count,
+                nick: uName,
                 socket: socket,
                 type: 'user',
                 currentChat: '#soccer',

@@ -20,8 +20,8 @@
 
             <form class="login" action="chat.html" method="get">
               <h1 class="form-title">Sign In</h1>
-              <input type="text" placeholder="Username" name="username" id='user'/>
-              <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+              <input type="text" placeholder="Username" name="username" id='username'/>
+              <input type="submit" value="Sign In" class="btn btn-success btn-sm" onclick="setUser()" />
             </form>
     </div>
   </div>
@@ -30,5 +30,12 @@
 
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/js/main.js"></script>
+  <script>
+  function setUser()
+  {
+    var userID = "username=" + $('#username').val();
+    document.cookie = userID;
+  }
+  </script>
 </body>
 </html>
