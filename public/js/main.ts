@@ -71,20 +71,16 @@ socket.on('clear', () => {
   $('.messages').html("");
 });
 
-// socket.on('create',  (msg) => {
-//   $('.tabs').append(`
-//       <li class="tab">${msg}</li>
-//   `);
-// });
 
-socket.on('create', appendTabs);
+
+socket.on('createTab', appendTabs);
 
 socket.on('delete-tab', (t) => {
   // @TODO - Add logic for deleting tabs, use store.channels!
 });
 
-// Switching Tabs
-$('.tab').click(function() {
+$('#allTabs').on('click', '.tab', function() {
+
   if (!$(this).hasClass('tab-primary')) {
     $('.tab').removeClass('tab-primary');
     $(this).addClass('tab-primary');
@@ -93,6 +89,7 @@ $('.tab').click(function() {
 
     var channel = store.channels[$(this).html()];
     socket.emit('channelChange', $('.tab-primary').html());
+    console.log(channel)
 
     if(channel) {
       channel.messages.map((m) => {
@@ -107,6 +104,34 @@ $('.tab').click(function() {
     }
   }
 });
+
+
+
+// // Switching Tabs
+// $('.tab').click(function() {
+//   if (!$(this).hasClass('tab-primary')) {
+//     $('.tab').removeClass('tab-primary');
+//     $(this).addClass('tab-primary');
+//     // Clear .messages element and add new messages from channel
+//     $('.messages').html("");
+//
+//     var channel = store.channels[$(this).html()];
+//     console.log($(this).html())
+//     socket.emit('channelChange', $('.tab-primary').html());
+//
+//     if(channel) {
+//       channel.messages.map((m) => {
+//         $('.messages').append(`
+//         <div class="message">
+//           <div style="background-image:url(http://lorempixel.com/g/128/128/cats/${Math.floor(10 * Math.random()) + 1})" class="message-icon"></div>
+//           <div class="message-content">
+//             <p>${m}</p>
+//           </div>
+//         </div>`);
+//       });
+//     }
+//   }
+// });
 
 $('form').submit(() => {
   if (/\S/.test($('#message-input').val()))

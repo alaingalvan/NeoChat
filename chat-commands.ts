@@ -216,6 +216,7 @@ var commands:IChatCommandMap = {
 			"create": {
 				numArgs: 1,
 				handler: function(args, io, session, player) {
+					console.log('inside create ' + args[0])
 
 
 					if (player.type == 'user')
@@ -224,14 +225,14 @@ var commands:IChatCommandMap = {
 							type : player.type,
 							messages: new Array()
 						}
-						player.socket.emit('create', '##'+args[0])
+						io.sockets.emit('createTab', '##'+args[0])
 					}
 					else{
 						session.channels['#'+args[0]] = {
 							type : player.type,
 							messages: new Array()
 						}
-						io.sockets.emit('create', '#'+args[0])
+						io.sockets.emit('createTab', '#'+args[0])
 					}
 
 				}

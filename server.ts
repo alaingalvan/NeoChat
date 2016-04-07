@@ -56,9 +56,11 @@ io.on('connection', (socket) => {
 
       io.sockets.emit('nickname', player.nick);
 
+
       if (player.nick == 'guest1')
       {
         player.type = 'sysop'
+
       }
 
     } else {
@@ -123,6 +125,15 @@ io.on('connection', (socket) => {
     console.log(player.nick + ' moved to channe: '+player.currentChat)
 
   });
+
+  // socket.on('create', (msg: string) => {
+  //
+  //   var msg = 'asd'
+  //   io.sockets.emit('createTab', 'herp');
+  //   socket.emit('createTab', 'merp');
+  //   io.emit('createTab', 'serp');
+  //   console.log(msg);
+  // });
 
 });
 
