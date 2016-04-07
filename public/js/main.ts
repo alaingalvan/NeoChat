@@ -73,7 +73,14 @@ socket.on('clear', () => {
 
 socket.on('leave', () =>{
   $('.tab').removeClass('tab-primary');
-  $( "body" ).find( "li" ).eq( 0 ).addClass( "tab-primary" );
+  $("li:contains(#announcements)").addClass('tab-primary')
+});
+
+socket.on('join',  (t) =>{
+  $('.tab').removeClass('tab-primary');
+console.log(t)
+$(`li:contains(${t})`).addClass('tab-primary')
+
 });
 
 

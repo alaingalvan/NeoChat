@@ -69,12 +69,14 @@ var commands:IChatCommandMap = {
 				{
 					if(allChans.substring(1, allChans.length) == args[0])
 					{
-						player.currentChat = allChans.substring(1, allChans.length);
+						player.currentChat = '#'+allChans.substring(1, allChans.length);
 						break;
 					}
 				}
 
 			}
+			console.log(player.currentChat)
+			player.socket.emit('join',player.currentChat)
 			io.sockets.emit('message', player.nick + ' has joined!!!', player.currentChat);
 
 		}
