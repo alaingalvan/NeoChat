@@ -1,14 +1,14 @@
-Complete Nick 1) You must have a login page -- no password, just nickname
+Nick 1) You must have a login page -- no password, just nickname
 
-2) If nickname is taken, system will rename it.
+Nick 2) If nickname is taken, system will rename it.
 
-3) Once you are logged in, you should have the following windows
+Nick 3) Once you are logged in, you should have the following windows
 
 Complete Given 3.a) Channels (you will have different tabs) including a system log that gives information about user's connection.
 
 Complete Given 3.b) Input box for messages
 
-3.c) List with users connected
+Nick 3.c) List with users connected
 
 Complete Given 4) You will need to have tabs for the channels
 
@@ -22,11 +22,11 @@ Complete Warren  SysOp can demote or promote. Moderator may promote others to mo
 
 Complete Warren 6) The user may send messages to individual users (and it will appear as a private channel window) or to the channel
 Complete Warren 7) A SysOp may send messages to any channel or all channels... those messages (broadcast) should be in a different color and with *** *** in between (as well as italicized).
-8) You have two type of channels.
-#NameOfChannel : Channels created by a SysOp or Moderator.
-##NameOfChannel: Channels created by a user
-8.1) Channels created by SysOp or Moderators are permanent. SysOp may delete channels.
-9) You will have to command for the following actions
+Complete Warren 8) You have two type of channels.
+Complete Warren #NameOfChannel : Channels created by a SysOp or Moderator.
+Complete Warren ##NameOfChannel: Channels created by a user
+Complete Warren 8.1) Channels created by SysOp or Moderators are permanent. SysOp may delete channels.
+Complete Warren 9) You will have to command for the following actions
 Complete Warren /list (display channel list)
 Complete Warren /list xxx (display channel that contains that string xxx)
 Complete Warren /msg nick "message this" (sends private message to user). Once they are in the chat window, the chat windows takes care of the private messages (using the same emit command)
@@ -62,7 +62,7 @@ SmartBot returns value
 10.2) Note that the smartbot, sysbot, and sysops are reserved nicks. So you can use it like this
 SmartBot calc 2+2
 
-11) You will need a special page that only an admin can access such as
+Nick 11) You will need a special page that only an admin can access such as
 chat/admin
 
 with a username and password (ok to hardcode for homework).

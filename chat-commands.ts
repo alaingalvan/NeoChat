@@ -30,6 +30,7 @@ var commands:IChatCommandMap = {
 		numArgs: 1,
 		handler: function(args, io, session, player) {
 			var channelList = [];
+			console.log(session.channels)
 
 			if (args[0] != null)
 			{
@@ -216,8 +217,6 @@ var commands:IChatCommandMap = {
 			"create": {
 				numArgs: 1,
 				handler: function(args, io, session, player) {
-					console.log('inside create ' + args[0])
-
 
 					if (player.type == 'user')
 					{
@@ -234,6 +233,7 @@ var commands:IChatCommandMap = {
 						}
 						io.sockets.emit('createTab', '#'+args[0])
 					}
+					io.sockets.emit('sync-store', JSON.stringify(session));
 
 				}
 			},
@@ -244,6 +244,10 @@ var commands:IChatCommandMap = {
 					if (player.type == 'sysop')
 					{
 						delete session.channels['##'+args[0]]
+						delete session.channels['#'+args[0]]
+						io.sockets.emit('delete-tab', '##'+args[0])
+						io.sockets.emit('delete-tab', '#'+args[0])
+						io.sockets.emit('sync-store', JSON.stringify(session));
 					}
 				}
 			}

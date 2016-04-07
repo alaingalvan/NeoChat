@@ -76,7 +76,8 @@ socket.on('clear', () => {
 socket.on('createTab', appendTabs);
 
 socket.on('delete-tab', (t) => {
-  // @TODO - Add logic for deleting tabs, use store.channels!
+  console.log(t)
+  $('.tab').remove(`:contains(${t})`);
 });
 
 $('#allTabs').on('click', '.tab', function() {
@@ -89,6 +90,7 @@ $('#allTabs').on('click', '.tab', function() {
 
     var channel = store.channels[$(this).html()];
     socket.emit('channelChange', $('.tab-primary').html());
+    console.log($(this).html())
     console.log(channel)
 
     if(channel) {
