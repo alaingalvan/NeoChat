@@ -15,7 +15,6 @@ import Commands from './chat-commands';
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
-var usersName = 'guest7757'
 //Bind Chat Commands Map to Socket Session
 var commands = Commands(io, chatSession);
 
@@ -23,20 +22,13 @@ var commands = Commands(io, chatSession);
 // Route all static files from the current directory + /public
 // Route /chatapp to curdir + public/index.html
 app.use(Express.static(__dirname + '/public'));
-app.get('/chatapp', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 
 
 });
 
-// app.get('/chat.html', (req,res)=>{
-//
-//   var uName = (req.param('username'));
-//   res.send(200,uName);
-//   console.log(uName)
-// });
 
-console.log(usersName)
 
 // Sockets
 io.on('connection', (socket) => {
@@ -48,6 +40,25 @@ io.on('connection', (socket) => {
   })
 
   socket.on('register', (uuid: string, uName:string) => {
+    if (uName.length < 2)
+    {
+      uName = 'guest' +(chatSession.count + 1)
+    }
+
+    var puser : string;
+    var tempNick : string;
+
+
+    for (puser in chatSession.users)
+    {
+      if(uName == chatSession.users[puser].nick)
+      {
+        tempNick = uName;
+        uName = 'guest' + (chatSession.count + 1)
+
+      }
+    }
+
     socket.emit('sync-store', JSON.stringify(chatSession));
     // If there doesn't already exist a player in the chat session store
     if (!(player = chatSession.users[uuid])) {
@@ -64,6 +75,7 @@ io.on('connection', (socket) => {
         quit: false
       };
 
+      socket.emit('message', tempNick + ' nick already taken.', player.currentChat)
       io.sockets.emit('nickname', player.nick);
 
 

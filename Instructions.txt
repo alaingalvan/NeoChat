@@ -1,6 +1,9 @@
 Navigate to the NeoChat Folder
 start the server node server.js
 
+We use cookies to pass the username over into the server so that mean you cannot use an incognito browser to have multiple users
+Just open up Inter explorer and firefox or chrome
+
 you will have a log in screen when you go to localhost:8082
 
 Pick a username

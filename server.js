@@ -7,19 +7,28 @@ var chat_commands_1 = require('./chat-commands');
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
-var usersName = 'guest7757';
 var commands = chat_commands_1.default(io, chat_session_1.default);
 app.use(Express.static(__dirname + '/public'));
-app.get('/chatapp', function (req, res) {
+app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
-console.log(usersName);
 io.on('connection', function (socket) {
     var player;
     socket.on('sync-store', function () {
         socket.emit('sync-store', JSON.stringify(chat_session_1.default));
     });
     socket.on('register', function (uuid, uName) {
+        if (uName.length < 2) {
+            uName = 'guest' + (chat_session_1.default.count + 1);
+        }
+        var puser;
+        var tempNick;
+        for (puser in chat_session_1.default.users) {
+            if (uName == chat_session_1.default.users[puser].nick) {
+                tempNick = uName;
+                uName = 'guest' + (chat_session_1.default.count + 1);
+            }
+        }
         socket.emit('sync-store', JSON.stringify(chat_session_1.default));
         if (!(player = chat_session_1.default.users[uuid])) {
             chat_session_1.default.count++;
@@ -32,6 +41,7 @@ io.on('connection', function (socket) {
                 currentChat: '#soccer',
                 quit: false
             };
+            socket.emit('message', tempNick + ' nick already taken.', player.currentChat);
             io.sockets.emit('nickname', player.nick);
             if (player.nick == 'guest1') {
                 player.type = 'sysop';

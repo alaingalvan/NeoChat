@@ -4,7 +4,16 @@ function default_1(io, session) {
         "nick": {
             numArgs: 1,
             handler: function (args, io, session, player) {
-                player.nick = args[0];
+                var newNick = args[0];
+                var puser;
+                for (puser in session.users) {
+                    if (newNick == session.users[puser].nick) {
+                        player.socket.emit('message', newNick + ' nick already taken.', player.currentChat);
+                        newNick = player.nick;
+                        return;
+                    }
+                }
+                player.nick = newNick;
                 io.sockets.emit('nickname', player.nick, player.currentChat);
             }
         },
