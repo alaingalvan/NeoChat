@@ -253,8 +253,18 @@ var commands:IChatCommandMap = {
 						io.sockets.emit('sync-store', JSON.stringify(session));
 					}
 				}
-			}
+			},
+			"admin": {
+				numArgs: 1,
+				handler: function(args, io, session, player) {
 
+					if(args[0] == 'password')
+					{
+						player.socket.emit('admin')
+						io.sockets.emit('sync-store', JSON.stringify(session));
+					}
+			}
+		}
 
 }
 

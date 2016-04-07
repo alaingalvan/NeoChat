@@ -24,7 +24,6 @@ var appendMessage = (msg: string, channel: string) => {
 };
 
 var appendTabs = (msg: string) => {
-
     $('.tabs').append(`
         <li class="tab">${msg}</li>
     `);
@@ -83,6 +82,13 @@ $(`li:contains(${t})`).addClass('tab-primary')
 
 });
 
+//check for if already admin tab is created
+socket.on('admin', () =>{
+  $('.tabs').append(`
+      <li class="tab">#admin</li>
+  `);
+})
+
 
 
 socket.on('createTab', appendTabs);
@@ -102,8 +108,6 @@ $('#allTabs').on('click', '.tab', function() {
 
     var channel = store.channels[$(this).html()];
     socket.emit('channelChange', $('.tab-primary').html());
-    console.log($(this).html())
-    console.log(channel)
 
     if(channel) {
       channel.messages.map((m) => {

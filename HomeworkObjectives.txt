@@ -62,7 +62,7 @@ SmartBot returns value
 10.2) Note that the smartbot, sysbot, and sysops are reserved nicks. So you can use it like this
 SmartBot calc 2+2
 
-Nick 11) You will need a special page that only an admin can access such as
+Complete Warren 11) You will need a special page that only an admin can access such as
 chat/admin
 
 with a username and password (ok to hardcode for homework).
