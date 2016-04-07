@@ -212,6 +212,7 @@ var commands:IChatCommandMap = {
 				handler: function(args, io, session, player) {
 					player.chatSession = '#anouncements'
 					player.socket.emit('message', 'You have moved to announcements', player.currentChat);
+					player.socket.emit('leave')
 				}
 			},
 			"create": {

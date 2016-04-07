@@ -71,6 +71,11 @@ socket.on('clear', () => {
   $('.messages').html("");
 });
 
+socket.on('leave', () =>{
+  $('.tab').removeClass('tab-primary');
+  $( "body" ).find( "li" ).eq( 0 ).addClass( "tab-primary" );
+});
+
 
 
 socket.on('createTab', appendTabs);
