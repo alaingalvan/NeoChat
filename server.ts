@@ -28,6 +28,16 @@ app.get('/', (req, res) => {
 
 });
 
+//Using routes to send post/get
+// app.get('/chat', function(req,res){
+//   var response = {
+//     usernametext:req.query.username
+//   }
+//   res.sendFile(__dirname + '/public/chat.html');
+// });
+//http://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm
+
+
 
 
 // Sockets
