@@ -12,6 +12,16 @@ import * as Sockets from 'socket.io';
 import chatSession from './chat-session';
 import Commands from './chat-commands';
 
+
+// Mongo
+import * as Mongdb from 'mongodb';
+
+
+
+
+
+
+//chat app
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
