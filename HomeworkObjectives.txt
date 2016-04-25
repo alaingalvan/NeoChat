@@ -1,3 +1,26 @@
+Continue from Homework #2.
+
+Add the following to your chat program.
+
+\:Time, \:Weather and a third of your choice \:Something here using web services
+
+One of them has to be implemented by you. One has to be an existing web service (calling one) and the third one can be either.
+
+Try to replace Socket.IO -- if it doesn't work, explain why
+
+However, to get full credit you want to use WebSockets and only when not supported, use Socket.IO (This will also give you extra credit, the latter part, which is an IF Statement and some additional logic)
+
+Store all the chat (conversation text) into MongoDB
+
+ -- You must be able to to store, retrieve (to bring back in page), query 
+
+Page must have a user
+
+Minimize use of session by storing data in mongo db and making additional events in client side (e.g., close window)
+
+Extra credit: add Oauth2
+
+Homework 2
 Nick 1) You must have a login page -- no password, just nickname
 
 Nick 2) If nickname is taken, system will rename it.
