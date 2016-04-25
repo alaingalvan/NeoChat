@@ -37,8 +37,12 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-
-// app.use('/api')
+app.use('/api',api.api)
+app.get('/api', (req, res) => {
+  // res.sendFile(__dirname + '/public/index.html');
+  console.log('chat');
+  res.sendFile(__dirname + '/public/error.html');
+});
 
 
 //Using routes to send post/get

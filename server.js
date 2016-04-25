@@ -13,6 +13,11 @@ app.use(Express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+app.use('/api', api.api);
+app.get('/api', function (req, res) {
+    console.log('chat');
+    res.sendFile(__dirname + '/public/error.html');
+});
 io.on('connection', function (socket) {
     var player;
     socket.on('sync-store', function () {
