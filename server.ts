@@ -22,6 +22,7 @@ import * as Mongdb from 'mongodb';
 
 
 //chat app
+var api = require('./api');
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
@@ -34,9 +35,11 @@ var commands = Commands(io, chatSession);
 app.use(Express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
-
-
 });
+
+
+// app.use('/api')
+
 
 //Using routes to send post/get
 // app.get('/chat', function(req,res){

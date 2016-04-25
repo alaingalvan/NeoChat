@@ -4,6 +4,7 @@ var Http = require('http');
 var Sockets = require('socket.io');
 var chat_session_1 = require('./chat-session');
 var chat_commands_1 = require('./chat-commands');
+var api = require('./api');
 var app = Express();
 var http = Http.createServer(app);
 var io = Sockets(http);
