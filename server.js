@@ -47,7 +47,6 @@ io.on('connection', function (socket) {
                 currentChat: '#soccer',
                 quit: false
             };
-            socket.emit('message', tempNick + ' nick already taken.', player.currentChat);
             io.sockets.emit('nickname', player.nick);
             if (player.nick == 'guest1') {
                 player.type = 'sysop';

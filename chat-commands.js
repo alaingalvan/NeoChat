@@ -1,4 +1,5 @@
 "use strict";
+var request = require('request');
 function default_1(io, session) {
     var commands = {
         "nick": {
@@ -221,14 +222,43 @@ function default_1(io, session) {
                     io.sockets.emit('sync-store', JSON.stringify(session));
                 }
             }
+        },
+        "time": {
+            numArgs: 1,
+            handler: function (args, io, session, player) {
+                var cDate;
+                request('http://localhost:8082/api/all', function (error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        console.log(body);
+                        player.socket.emit('message', 'The current date is ' + body, player.currentChat);
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
+            }
+        },
+        "wearther": {
+            numArgs: 1,
+            handler: function (args, io, session, player) {
+                request('http://localhost:8082/api/all', function (error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        console.log(body);
+                        player.socket.emit('message', 'The current date is ' + body, player.currentChat);
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
+            }
         }
     };
     var isCommand = function (msg) {
-        return (msg.substring(0, 1) == "/");
+        return (msg.substring(0, 1) == "/" || msg.substring(0, 2) == "\\:");
     };
     var run = function (player, msg) {
         var cmd = msg.substring(1, msg.length);
-        var args = cmd.match(/[0-9A-z][a-z]*/g);
+        var args = cmd.match(/[0-9A-z][a-z:]*/g);
         var fun = args.shift();
         commands[fun].handler(args, io, session, player);
     };

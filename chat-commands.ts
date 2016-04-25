@@ -1,6 +1,7 @@
 /**
  * This file defines console command logic.
  */
+ var request = require('request');
 
 
 import {IUser} from './chat-session';
@@ -280,13 +281,49 @@ var commands:IChatCommandMap = {
 						io.sockets.emit('sync-store', JSON.stringify(session));
 					}
 			}
+		},
+		"time": {
+			numArgs: 1,
+			handler: function(args, io, session, player) {
+				var cDate;
+
+				request('http://localhost:8082/api/all', function (error, response, body) {
+						if (!error && response.statusCode == 200) {
+								console.log(body) // Print the google web page.
+								player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
+								// console.log(response)
+						 }
+						 else {
+							 console.log(error);
+							//  console.log(response.statusCode)
+						 }
+				})
 		}
+	},
+	"wearther": {
+		numArgs: 1,
+		handler: function(args, io, session, player) {
+
+			request('http://localhost:8082/api/all', function (error, response, body) {
+					if (!error && response.statusCode == 200) {
+							console.log(body) // Print the google web page.
+							player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
+							// console.log(response)
+					 }
+					 else {
+						 console.log(error);
+					 }
+			})
+
+	}
+}
 
 }
 
 
 var isCommand = function(msg) {
-	return (msg.substring(0, 1) == "/");
+	// console.log("\\")
+	return (msg.substring(0, 1) == "/" || msg.substring(0, 2) == "\\:");
 }
 
 /**
@@ -297,7 +334,7 @@ var isCommand = function(msg) {
  */
 var run = function(player:any, msg:string) {
 	var cmd = msg.substring(1, msg.length);
-	var args = cmd.match(/[0-9A-z][a-z]*/g);
+	var args = cmd.match(/[0-9A-z][a-z:]*/g);
 	var fun = args.shift();
 
 	commands[fun].handler(args, io, session, player);
@@ -316,6 +353,9 @@ interface IChatCommand {
 interface IChatCommandMap {
 	[command:string]:IChatCommand
 }
+
+//if not in command list print not in commant
+
 
 
 /* Old broken code

@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
         quit: false
       };
 
-      socket.emit('message', tempNick + ' nick already taken.', player.currentChat)
+      // socket.emit('message', tempNick + ' nick already taken.', player.currentChat)
       io.sockets.emit('nickname', player.nick);
 
 
