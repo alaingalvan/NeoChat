@@ -46,6 +46,8 @@ $(() => {
 
 socket.on('sync-store', (s) => {
   store = JSON.parse(s);
+  console.log(store.channels[$(this).html()]);
+  console.log('inside store')
 
   //@TODO - Sync Tabs in HTML with jQuery
   //if $('.tab-primary').html()

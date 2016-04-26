@@ -310,7 +310,7 @@ var commands:IChatCommandMap = {
 							// player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
 							// // console.log(response)
               var weather = JSON.parse(body);
-              var weatherMessage = 'The weather in ' + weather.name + ' is ' + weather.weather[0].description + '!'
+              var weatherMessage = 'WEATHER REPORT: ' + weather.weather[0].description + ' in '+ weather.name + '!' //capital first letter
               player.socket.emit('message', weatherMessage, player.currentChat);
 
 					 }
@@ -360,14 +360,12 @@ var run = function(player:any, msg:string) {
 
 for (var cCmd in commands)
 {
-  if (cCmd == cmd)
+
+  if (cCmd == fun)
   {
     commands[fun].handler(args, io, session, player);
   }
 }
-
-
-
 }
 
 	return {

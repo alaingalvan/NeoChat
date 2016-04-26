@@ -244,7 +244,7 @@ function default_1(io, session) {
                 request('http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',us&appid=e3bd9e892fa974e46eb8fc16349738fc', function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         var weather = JSON.parse(body);
-                        var weatherMessage = 'The weather in ' + weather.name + ' is ' + weather.weather[0].description + '!';
+                        var weatherMessage = 'WEATHER REPORT: ' + weather.weather[0].description + ' in ' + weather.name + '!';
                         player.socket.emit('message', weatherMessage, player.currentChat);
                     }
                     else {
@@ -276,7 +276,7 @@ function default_1(io, session) {
         var args = cmd.match(/[0-9A-z][a-z:]*/g);
         var fun = args.shift();
         for (var cCmd in commands) {
-            if (cCmd == cmd) {
+            if (cCmd == fun) {
                 commands[fun].handler(args, io, session, player);
             }
         }

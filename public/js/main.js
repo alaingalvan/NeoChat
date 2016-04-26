@@ -1,3 +1,4 @@
+var _this = this;
 var nickname = 'guest', socket = io('http://localhost:8082'), uuid = localStorage.getItem('uuid'), store = {
     users: new Array(),
     count: 0,
@@ -26,6 +27,8 @@ $(function () {
 });
 socket.on('sync-store', function (s) {
     store = JSON.parse(s);
+    console.log(store.channels[$(_this).html()]);
+    console.log('inside store');
 });
 socket.on('message', appendMessage);
 socket.on('nickname', function (msg) {
