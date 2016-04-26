@@ -4,7 +4,7 @@ exports.api = express.Router();
 
 
 
-exports.api.route('/all')
+exports.api.route('/date')
 .get(function (request, response, next) {
 
   var monthNames = [
@@ -20,5 +20,5 @@ exports.api.route('/all')
   var currentDate =  day + ' '+ monthNames[monthIndex] +' ' +year;
     // console.log(day, monthNames[monthIndex], year);
     console.log(currentDate);
-    response.json(currentDate); //convert to actual json
+    response.json(currentDate); //convert to actual json JSON.parse(text)
 });

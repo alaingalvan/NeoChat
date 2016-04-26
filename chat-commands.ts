@@ -282,12 +282,10 @@ var commands:IChatCommandMap = {
 					}
 			}
 		},
-		"time": {
+		"date": {
 			numArgs: 1,
 			handler: function(args, io, session, player) {
-				var cDate;
-
-				request('http://localhost:8082/api/all', function (error, response, body) {
+				request('http://localhost:8082/api/date', function (error, response, body) {
 						if (!error && response.statusCode == 200) {
 								console.log(body) // Print the google web page.
 								player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
@@ -300,15 +298,21 @@ var commands:IChatCommandMap = {
 				})
 		}
 	},
-	"wearther": {
+	"weather": {
 		numArgs: 1,
 		handler: function(args, io, session, player) {
+      var zip = args.join().replace(/,/g, "");
+      // console.log(args.join().replace(/,/g, ""));
 
-			request('http://localhost:8082/api/all', function (error, response, body) {
+			request('http://api.openweathermap.org/data/2.5/weather?zip='+ zip +',us&appid=e3bd9e892fa974e46eb8fc16349738fc', function (error, response, body) {
 					if (!error && response.statusCode == 200) {
-							console.log(body) // Print the google web page.
-							player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
-							// console.log(response)
+							// console.log(body); // Print the google web page.
+							// player.socket.emit('message', 'The current date is ' + body, player.currentChat); // figure out why body doesnt correct time
+							// // console.log(response)
+              var weather = JSON.parse(body);
+              var weatherMessage = 'The weather in ' + weather.name + ' is ' + weather.weather[0].description + '!'
+              player.socket.emit('message', weatherMessage, player.currentChat);
+
 					 }
 					 else {
 						 console.log(error);
