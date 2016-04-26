@@ -209,7 +209,7 @@ var commands:IChatCommandMap = {
 						for (puser in session.users)
 						{
 								session.users[puser].socket.emit('message','*** System Operator '+player.nick + ': ' + privateMessage + ' ***', session.users[puser].currentChat)
-							}
+						}
 					}
 
 
@@ -357,7 +357,17 @@ var run = function(player:any, msg:string) {
 	var args = cmd.match(/[0-9A-z][a-z:]*/g);
 	var fun = args.shift();
 
-	commands[fun].handler(args, io, session, player);
+
+for (var cCmd in commands)
+{
+  if (cCmd == cmd)
+  {
+    commands[fun].handler(args, io, session, player);
+  }
+}
+
+
+
 }
 
 	return {

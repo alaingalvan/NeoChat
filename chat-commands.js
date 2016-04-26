@@ -275,7 +275,11 @@ function default_1(io, session) {
         var cmd = msg.substring(1, msg.length);
         var args = cmd.match(/[0-9A-z][a-z:]*/g);
         var fun = args.shift();
-        commands[fun].handler(args, io, session, player);
+        for (var cCmd in commands) {
+            if (cCmd == cmd) {
+                commands[fun].handler(args, io, session, player);
+            }
+        }
     };
     return {
         run: run,

@@ -54,7 +54,6 @@ io.on('connection', function (socket) {
         }
         else {
             player = chat_session_1.default.users[uuid];
-            socket.emit('log', chat_session_1.default.channels['#anouncements'].messages);
             socket.emit('message', 'System: Welcome back ' + player.nick + '!', '#anouncements');
             if (!player.disconnected) {
                 player.tabs++;

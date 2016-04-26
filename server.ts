@@ -115,7 +115,7 @@ io.on('connection', (socket) => {
 
     } else {
       player = chatSession.users[uuid];
-      socket.emit('log', chatSession.channels['#anouncements'].messages);
+      // socket.emit('log', chatSession.channels['#anouncements'].messages);
       socket.emit('message', 'System: Welcome back ' + player.nick + '!', '#anouncements');
       if (!player.disconnected) {
         player.tabs++;
