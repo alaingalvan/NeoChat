@@ -320,6 +320,22 @@ var commands:IChatCommandMap = {
 			})
 
 	}
+},
+"time": {
+  numArgs: 1,
+  handler: function(args, io, session, player) {
+    request('http://localhost:8082/api/time', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body) // Print the google web page.
+            player.socket.emit('message', 'The current time is ' + body, player.currentChat); // figure out why body doesnt correct time
+            // console.log(response)
+         }
+         else {
+           console.log(error);
+          //  console.log(response.statusCode)
+         }
+    })
+}
 }
 
 }

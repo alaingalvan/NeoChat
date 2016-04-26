@@ -2,9 +2,9 @@ Continue from Homework #2.
 
 Add the following to your chat program.
 
-\:Time, \:Weather and a third of your choice \:Something here using web services
+Done Warren \:Time, \:Weather and a third of your choice \:Something here using web services
 
-One of them has to be implemented by you. One has to be an existing web service (calling one) and the third one can be either.
+Dpne Warren One of them has to be implemented by you. One has to be an existing web service (calling one) and the third one can be either.
 
 Try to replace Socket.IO -- if it doesn't work, explain why
 
@@ -12,7 +12,7 @@ However, to get full credit you want to use WebSockets and only when not support
 
 Store all the chat (conversation text) into MongoDB
 
- -- You must be able to to store, retrieve (to bring back in page), query 
+ -- You must be able to to store, retrieve (to bring back in page), query
 
 Page must have a user
 
