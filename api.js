@@ -38,7 +38,7 @@ if (hours > 12) {
    hours = 12;
 }
 
-  var currentTime = hours + ":" + minutes
+  var currentTime = hours + ":" + minutes + ending;
     console.log(hours,minutes);
     response.json(currentTime); //convert to actual json JSON.parse(text)
 });
