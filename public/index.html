@@ -3,45 +3,39 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>NeoChat</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <title></title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
 <body>
 
-  <div id="sidebar" class="sidebar">
-    <div class="modal">
-      <form id="registerform">
-        <input placeholder="Username"/>
-        <button>Join Chat</button>
-      </form>
-    </div>
-    <ul id="users">
-      <!--Add Users Here-->
-    </ul>
-  </div>
-  <div class="content">
-    <ul class="tabs">
-      <li class="tab">#anouncements</li>
-      <li class="tab tab-primary">#soccer</li>
-      <li class="tab">#jazz</li>
-    </ul>
-    <div class="chat">
-      <div class="messages">
 
-        <!--Messages go here-->
+  <div id="cf4a">
+    <img src="images/1.jpg" />
+    <img src="images/2.jpg" />
+    <img src="images/3.jpg" />
+    <img src="images/4.jpg" />
+        <div class="wrap">
 
-      </div>
-      <form id="#message-form">
-        <input placeholder="Type your Message Here" autocomplete="off" id="message-input"/>
-        <button>Reply</button>
-      </form>
+            <form class="login" action="chat.html" method="GET"> <!-- using post change action from html page to action  name that is passed to the node server -->
+              <h1 class="form-title">Sign In</h1>
+              <input type="text" placeholder="Username" name="username" id ="username"/>
+              <input type="submit" value="Sign In" class="btn btn-success btn-sm" onclick="setUser()" />
+            </form>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.js"></script>
+
+
+
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/js/main.js"></script>
+  <script>
+  function setUser()
+  {
+    var userID = "username=" + $('#username').val();
+    document.cookie = userID;
+  }
+  </script>
 </body>
-
 </html>

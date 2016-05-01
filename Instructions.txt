@@ -1,0 +1,29 @@
+Navigate to the NeoChat Folder
+start the server node server.js
+
+We use cookies to pass the username over into the server so that mean you cannot use an incognito browser to have multiple users
+Just open up Inter explorer and firefox or chrome
+
+you will have a log in screen when you go to localhost:8082
+
+Pick a username
+
+you can change your chat channel by clicking on the Tabs
+
+guest1 will always be a sysops
+
+
+commands
+/nick (name) change user name
+/clear clear the current chat screen
+/admin password to have access to the admin Tabs
+/create (channel name) will create a new tab with the name you entered in
+/delete (channel name) will remove a tab if you are a sysops
+/join (channel name) to move to different channel
+/leave to move to the announcements channel
+/quit to be unable to chat
+/promote (username) can promote users to mod
+/demote (username) will demote a user and only sysops have this power
+/msg (username) will message a specific user in their current channel that only they can see
+/list will show all of the channel
+/list (name) will show all of the channels with that name
